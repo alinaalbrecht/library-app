@@ -10,12 +10,14 @@ let unread = "&mdash;"
 
 let library = [];
 
-function Book(title, author, pages, read) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.read = read
-    this.delete = "&#10007; remove"
+class Book{
+    constructor(title, author, pages, read) {
+        this.title = title
+        this.author = author
+        this.pages = pages
+        this.read = read
+        this.delete = "&#10007; remove"
+    }
 }
 
 function createNewBook() {
