@@ -28,16 +28,22 @@
 
       <div class="library-app__sidebar">
         <h2 class="sidebar__title">Add a Book</h2>
-        <form class="sidebar__book-form">
-          <label for="title">Title</label><br />
-          <input
-            class="book-form__input-field"
-            type="text"
-            id="title"
-            name="title"
-            required
-            min="1"
-          /><br />
+        <form class="sidebar__book-form" novalidate>
+          <p>
+            <label for="title">
+              <span>Title</span>
+              <input
+                class="book-form__input-field"
+                type="text"
+                id="title"
+                name="title"
+                required
+                min="1"
+              />
+              <span class="title-error" aria-live="polite"></span>
+            </label>
+          </p>
+          <!-- <br /> -->
 
           <label for="author">Author</label><br />
           <input
