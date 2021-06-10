@@ -1,3 +1,7 @@
+/* import "./style.css"; */
+/* import "./css/styles.css"; */
+/* import "./sass/style.scss"; */
+
 let bookList = document.querySelector("tbody");
 let submitBookButton = document.querySelector(".submit-book");
 submitBookButton.addEventListener("click", createNewBook);
