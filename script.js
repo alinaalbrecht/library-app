@@ -116,7 +116,7 @@ function clearAll() {
 const form = document.querySelector("form");
 const bookTitle = document.querySelector("#title");
 const titleError = document.querySelector(".title-error");
-bookTitle.addEventListener("input", (e) => {
+bookTitle.addEventListener("blur", (e) => {
   if (bookTitle.validity.valid) {
     titleError.textContent = "";
   } else {
@@ -136,11 +136,11 @@ function showError() {
   if (bookTitle.validity.valueMissing) {
     // If the field is empty,
     // display the following error message.
-    titleError.textContent = "You need to enter an book title address.";
-  } /* else if (bookTitle.validity.typeMismatch) {
+    titleError.textContent = "You need to enter a book title.";
+  } else if (bookTitle.validity.typeMismatch) {
     // If the field doesn't contain an email address,
     // display the following error message.
-    titleError.textContent = "Entered value needs to be an e-mail address."; */
+    titleError.textContent = "Entered value needs to be a book title.";
   } else if (bookTitle.validity.tooShort) {
     // If the data is too short,
     // display the following error message.
