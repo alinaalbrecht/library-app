@@ -44,26 +44,35 @@
             </label>
           </p>
           <!-- <br /> -->
+          <p>
+            <label for="author">
+              <span>Author</span>
+              <input
+                class="book-form__input-field"
+                type="text"
+                id="author"
+                name="author"
+                required
+                min="1"
+              />
+              <span class="author-error" aria-live="polite"></span>
+            </label>
+          </p>
 
-          <label for="author">Author</label><br />
-          <input
-            class="book-form__input-field"
-            type="text"
-            id="author"
-            name="author"
-            required
-            min="1"
-          /><br />
-
-          <label for="pages">Number of pages</label><br />
-          <input
-            class="book-form__input-field book-form__number-field"
-            type="number"
-            id="pages"
-            name="author"
-            required
-            min="1"
-          /><br />
+          <p>
+            <label for="pages">
+              <span>Number of pages</span>
+              <input
+                class="book-form__input-field book-form__number-field"
+                type="number"
+                id="pages"
+                name="author"
+                required
+                min="1"
+              />
+              <span class="pages-error" aria-live="polite"></span>
+            </label>
+          </p>
 
           <input type="radio" id="read" name="read" value="read" />
           <label for="read">Read</label><br />
