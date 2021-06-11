@@ -21,7 +21,7 @@
   outline-offset: 2px;
 }
 
-button:focus-visible {
+.book-form__submit:focus-visible {
   outline: #fff dashed 2px;
   outline-offset: -4px;
 }
