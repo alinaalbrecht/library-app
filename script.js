@@ -1,6 +1,5 @@
 let bookList = document.querySelector("tbody");
 let submitBookButton = document.querySelector(".book-form__submit");
-let inputs = document.querySelectorAll(".book-form__input-field");
 let removeAllBooks = document.querySelector(".remove-all");
 removeAllBooks.addEventListener("click", clearAll);
 
@@ -114,36 +113,39 @@ function clearAll() {
 
 //Form validation
 const form = document.querySelector("form");
+let inputs = [...document.querySelectorAll(".book-form__input-field")];
+inputs.forEach((input) => input.addEventListener("blur", checkValidity));
+
 const bookTitle = document.querySelector("#title");
 const titleError = document.querySelector(".title-error");
-bookTitle.addEventListener("blur", (e) => {
-  if (bookTitle.validity.valid) {
-    titleError.textContent = "";
-  } else {
-    showError();
-  }
-});
 
-submitBookButton.addEventListener("click", (e) => {
-  if (!bookTitle.validity.valid) {
-    showError();
+function checkValidity(e) {
+  const errorMessage = e.target.parentElement.children[2];
+  if (e.target.validity.valid) {
+    errorMessage.textContent = "";
   } else {
-    createNewBook();
+    showError(errorMessage);
   }
-});
+}
 
-function showError() {
-  if (bookTitle.validity.valueMissing) {
-    // If the field is empty,
-    // display the following error message.
-    titleError.textContent = "You need to enter a book title.";
-  } else if (bookTitle.validity.typeMismatch) {
-    // If the field doesn't contain an email address,
-    // display the following error message.
-    titleError.textContent = "Entered value needs to be a book title.";
-  } else if (bookTitle.validity.tooShort) {
-    // If the data is too short,
-    // display the following error message.
-    titleError.textContent = `Title should be at least ${bookTitle.minLength} characters; you entered ${bookTitle.value.length}.`;
+function showError(target) {
+  const errorName = target.dataset.name;
+  target.textContent = `Please enter a ${errorName}`;
+}
+
+submitBookButton.addEventListener("click", checkValidityAll);
+submitBookButton.addEventListener("keydown", checkValidityAll);
+function checkValidityAll(e) {
+  if (e.keyCode === 13 || e.keyCode === undefined) {
+    let totalErrors = 0;
+    for (let i = 0; i < inputs.length; i++) {
+      if (!inputs[i].validity.valid) {
+        showError(inputs[i].parentElement.children[2]);
+        totalErrors++;
+      }
+    }
+    if (totalErrors === 0) {
+      createNewBook();
+    }
   }
 }

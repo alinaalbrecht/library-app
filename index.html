@@ -40,7 +40,11 @@
                 required
                 min="1"
               />
-              <span class="title-error" aria-live="polite"></span>
+              <span
+                class="error-message"
+                data-name="book title"
+                aria-live="polite"
+              ></span>
             </label>
           </p>
           <!-- <br /> -->
@@ -55,22 +59,30 @@
                 required
                 min="1"
               />
-              <span class="author-error" aria-live="polite"></span>
+              <span
+                class="error-message"
+                data-name="author"
+                aria-live="polite"
+              ></span>
             </label>
           </p>
 
           <p>
             <label for="pages">
-              <span>Number of pages</span>
+              <span>Number of pages<br /></span>
               <input
                 class="book-form__input-field book-form__number-field"
                 type="number"
                 id="pages"
-                name="author"
+                name="pages"
                 required
                 min="1"
               />
-              <span class="pages-error" aria-live="polite"></span>
+              <span
+                class="error-message"
+                data-name="number of pages"
+                aria-live="polite"
+              ></span>
             </label>
           </p>
 
