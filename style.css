@@ -4,6 +4,7 @@
   --small-text: 16px;
   --large-text: 20px;
   --light-grey: #93949f;
+  --light-blue: #e0e3fd;
 }
 
 * {
@@ -20,7 +21,7 @@
   outline-offset: 2px;
 }
 
-.button:focus-visible {
+button:focus-visible {
   outline: #fff dashed 2px;
   outline-offset: -4px;
 }
@@ -76,9 +77,6 @@ h4 {
   height: 100vh;
 }
 
-.sidebar__title {
-}
-
 .sidebar__book-form {
   width: 80%;
 }
@@ -95,9 +93,6 @@ span {
   margin: 3px 0;
 }
 
-/* input:invalid {
-  outline: 1px solid var(--red);
-} */
 .error-message {
   color: var(--red);
 }
@@ -110,24 +105,28 @@ label {
   font-size: 12px;
 }
 
+button {
+  text-align: center;
+  line-height: 50px;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  font-size: var(--small-text);
+}
+
 .book-form__submit {
   color: #fff;
-  top: 50px;
   margin-top: 40px;
-  text-align: center;
   width: 100%;
   background-color: var(--blue);
-  line-height: 50px;
-  border-radius: 3px;
-  cursor: pointer;
-  border: none;
-  font-size: var(--large-text);
 }
 
 .library-app__book-table {
   background-color: #fff;
   margin-left: 20px;
   width: 70%;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-table__title {
@@ -142,14 +141,20 @@ label {
 .book-table__table {
   width: 100%;
   margin-top: 20px;
+  border-collapse: collapse;
 }
 
 .table__header {
   font-weight: 600;
 }
 
+tbody tr:nth-child(odd) {
+  background-color: var(--light-blue);
+}
+
 td {
   width: 20%;
+  padding: 10px;
 }
 
 .read {
@@ -163,14 +168,11 @@ td {
 }
 
 .book-table__remove-all {
-  text-align: center;
   margin: 100px auto;
   color: #f5707d;
   border: 1px solid #f5707d;
-  max-width: 292px;
-  line-height: 50px;
-  border-radius: 3px;
-  cursor: pointer;
+  width: 290px;
+  background-color: #fff;
 }
 
 .book-table__remove-all:focus,
@@ -191,6 +193,9 @@ td {
     width: 100%;
     padding-bottom: 40px;
     height: unset;
+  }
+  .book-form__submit {
+    width: 290px;
   }
   .library-app__book-table {
     margin: 20px 0 0 0;

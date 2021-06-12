@@ -1,3 +1,4 @@
+//Get DOM elements
 let bookList = document.querySelector("tbody");
 
 let submitBookButton = document.querySelector(".book-form__submit");
@@ -11,7 +12,18 @@ removeAllBooks.addEventListener("keydown", clearAll);
 let read = "&#10003;";
 let unread = "&mdash;";
 
-let library = [];
+//Set up library array that will save to localStorage
+let library = JSON.parse(localStorage.getItem("library") || "[]");
+
+//render saved library list on page load
+(function () {
+  displayLibrary();
+})();
+
+//save library to localStorage
+function saveLibrary() {
+  localStorage.setItem("library", JSON.stringify(library));
+}
 
 //Book constructor
 class Book {
@@ -50,6 +62,7 @@ function createNewBook() {
 function addBookToLibrary(newBook) {
   library.push(newBook);
   displayLibrary();
+  saveLibrary();
 }
 
 //render library array to DOM and add event listeners to new library elements
@@ -102,10 +115,11 @@ function deleteBook(e) {
     let index = parseInt(e.target.dataset.index);
     library.splice(index, 1);
     displayLibrary();
+    saveLibrary();
   }
 }
 
-//
+//tell user how many books from their library they have read
 function updateTally() {
   let tally = document.querySelector(".book-table__tally");
   let totalRead = 0;
@@ -133,6 +147,7 @@ function clearAll(e) {
   if (e.keyCode === 13 || e.keyCode === undefined) {
     library = [];
     displayLibrary();
+    saveLibrary();
   }
 }
 
