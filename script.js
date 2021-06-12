@@ -1,5 +1,9 @@
 let bookList = document.querySelector("tbody");
+
 let submitBookButton = document.querySelector(".book-form__submit");
+submitBookButton.addEventListener("click", checkValidityAll);
+submitBookButton.addEventListener("keydown", checkValidityAll);
+
 let removeAllBooks = document.querySelector(".book-table__remove-all");
 removeAllBooks.addEventListener("click", clearAll);
 removeAllBooks.addEventListener("keydown", clearAll);
@@ -79,6 +83,7 @@ function displayLibrary() {
   return deleteButtons;
 }
 
+//change read status between read/unread
 function toggleRead(e) {
   if (e.keyCode === 13 || e.keyCode === undefined) {
     let index = e.target.dataset.index;
@@ -91,6 +96,7 @@ function toggleRead(e) {
   }
 }
 
+//remove book from libary
 function deleteBook(e) {
   if (e.keyCode === 13 || e.keyCode === undefined) {
     let index = parseInt(e.target.dataset.index);
@@ -99,6 +105,7 @@ function deleteBook(e) {
   }
 }
 
+//
 function updateTally() {
   let tally = document.querySelector(".book-table__tally");
   let totalRead = 0;
@@ -108,7 +115,10 @@ function updateTally() {
       totalRead++;
     }
   }
-  if (total === totalRead) {
+  if (total === 0) {
+    tally.textContent =
+      "You don't have books in your library yet. Add some now!";
+  } else if (total === totalRead) {
     tally.textContent =
       "Great job! You have read all the books in your library!";
   } else if (totalRead === 0) {
@@ -127,12 +137,9 @@ function clearAll(e) {
 }
 
 //Form validation
-const form = document.querySelector("form");
+/* const form = document.querySelector("form"); */
 let inputs = [...document.querySelectorAll(".book-form__input-field")];
 inputs.forEach((input) => input.addEventListener("blur", checkValidity));
-
-const bookTitle = document.querySelector("#title");
-const titleError = document.querySelector(".title-error");
 
 function checkValidity(e) {
   const errorMessage = e.target.parentElement.children[2];
@@ -148,8 +155,6 @@ function showError(target) {
   target.textContent = `Please enter a ${errorName}`;
 }
 
-submitBookButton.addEventListener("click", checkValidityAll);
-submitBookButton.addEventListener("keydown", checkValidityAll);
 function checkValidityAll(e) {
   if (e.keyCode === 13 || e.keyCode === undefined) {
     let totalErrors = 0;
