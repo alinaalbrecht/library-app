@@ -2,12 +2,14 @@ let bookList = document.querySelector("tbody");
 let submitBookButton = document.querySelector(".book-form__submit");
 let removeAllBooks = document.querySelector(".book-table__remove-all");
 removeAllBooks.addEventListener("click", clearAll);
+removeAllBooks.addEventListener("keydown", clearAll);
 
 let read = "&#10003;";
 let unread = "&mdash;";
 
 let library = [];
 
+//Book constructor
 class Book {
   constructor(title, author, pages, read) {
     this.title = title;
@@ -18,6 +20,7 @@ class Book {
   }
 }
 
+//Make a new book from user input
 function createNewBook() {
   let titleInput = document.querySelector("#title").value;
   let authorInput = document.querySelector("#author").value;
@@ -39,11 +42,13 @@ function createNewBook() {
   return newBook;
 }
 
+//push new book to library array
 function addBookToLibrary(newBook) {
   library.push(newBook);
   displayLibrary();
 }
 
+//render library array to DOM and add event listeners to new library elements
 function displayLibrary() {
   let bookListItems = [];
   for (let i = 0; i < library.length; i++) {
@@ -52,8 +57,8 @@ function displayLibrary() {
     <td class="title">${library[i].title}</td>
     <td class="author">${library[i].author}</td>
     <td class="pages">${library[i].pages}</td>
-    <td class="read" data-index="${i}">${library[i].read}</td>
-    <td class="delete" data-index="${i}">${library[i].delete}</td>
+    <td class="read" tabindex="0" data-index="${i}">${library[i].read}</td>
+    <td class="delete" tabindex="0" data-index="${i}">${library[i].delete}</td>
     </tr>`
     );
   }
@@ -61,29 +66,37 @@ function displayLibrary() {
   bookList.innerHTML = bookListItems.join("");
   let isRead = document.querySelectorAll(".read");
   isRead.forEach((icon) => icon.addEventListener("click", toggleRead));
+  isRead.forEach((icon) => icon.addEventListener("keydown", toggleRead));
 
   let deleteButtons = document.querySelectorAll(".delete");
   deleteButtons.forEach((button) =>
     button.addEventListener("click", deleteBook)
+  );
+  deleteButtons.forEach((button) =>
+    button.addEventListener("keydown", deleteBook)
   );
   updateTally();
   return deleteButtons;
 }
 
 function toggleRead(e) {
-  let index = e.target.dataset.index;
-  if (library[index].read === read) {
-    library[index].read = unread;
-  } else {
-    library[index].read = read;
+  if (e.keyCode === 13 || e.keyCode === undefined) {
+    let index = e.target.dataset.index;
+    if (library[index].read === read) {
+      library[index].read = unread;
+    } else {
+      library[index].read = read;
+    }
+    displayLibrary();
   }
-  displayLibrary();
 }
 
 function deleteBook(e) {
-  let index = parseInt(e.target.dataset.index);
-  library.splice(index, 1);
-  displayLibrary();
+  if (e.keyCode === 13 || e.keyCode === undefined) {
+    let index = parseInt(e.target.dataset.index);
+    library.splice(index, 1);
+    displayLibrary();
+  }
 }
 
 function updateTally() {
@@ -105,10 +118,12 @@ function updateTally() {
   }
 }
 
-//clear all input fields
-function clearAll() {
-  library = [];
-  displayLibrary();
+//remove all books from library
+function clearAll(e) {
+  if (e.keyCode === 13 || e.keyCode === undefined) {
+    library = [];
+    displayLibrary();
+  }
 }
 
 //Form validation
