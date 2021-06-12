@@ -179,3 +179,22 @@ td {
   background-color: var(--red);
   color: #fff;
 }
+
+@media (max-width: 1000px) {
+  .library-app__header-banner {
+    justify-content: center;
+  }
+  .header-banner__bookmark-icon {
+    margin: 0 10px;
+  }
+  .library-app__sidebar {
+    width: 100%;
+    padding-bottom: 40px;
+    height: unset;
+  }
+  .library-app__book-table {
+    margin: 20px 0 0 0;
+    width: 100%;
+    text-align: center;
+  }
+}
