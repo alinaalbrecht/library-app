@@ -47,7 +47,6 @@
               ></span>
             </label>
           </p>
-          <!-- <br /> -->
           <p>
             <label for="author">
               <span>Author</span>
@@ -92,14 +91,16 @@
           <input type="radio" id="unread" name="read" value="unread" />
           <label for="unread">Unread</label><br />
 
-          <div class="book-form__submit" tabindex="0">Add to Library</div>
+          <div class="book-form__submit button" tabindex="0">
+            Add to Library
+          </div>
         </form>
       </div>
-      <div class="main">
-        <h1>Your Library</h1>
-        <div class="tally"></div>
-        <table>
-          <thead>
+      <div class="library-app__book-table">
+        <h1 class="book-table__title">Your Library</h1>
+        <div class="book-table__tally"></div>
+        <table class="book-table__table">
+          <thead class="table__header">
             <td class="title">Title</td>
             <td class="author">Author</td>
             <td class="pages">Pages</td>
@@ -109,7 +110,9 @@
           <tbody></tbody>
         </table>
 
-        <div class="remove-all">Remove all Books</div>
+        <div tabindex="0" class="book-table__remove-all button">
+          Remove all Books
+        </div>
       </div>
     </div>
   </body>

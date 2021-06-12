@@ -4,7 +4,6 @@
   --small-text: 16px;
   --large-text: 20px;
   --light-grey: #93949f;
-  /* --dark-grey: */
 }
 
 * {
@@ -21,14 +20,12 @@
   outline-offset: 2px;
 }
 
-.book-form__submit:focus-visible {
+.button:focus-visible {
   outline: #fff dashed 2px;
   outline-offset: -4px;
 }
 
 body {
-  /* display: grid;
-    grid-template-columns: 1fr 3fr; */
   height: 100vh;
   overflow-y: hidden;
   font-family: "Montserrat", sans-serif;
@@ -41,6 +38,7 @@ h2,
 h3,
 h4 {
   font-family: "Nunito", sans-serif;
+  margin-top: 20px;
 }
 
 .library-app {
@@ -126,27 +124,27 @@ label {
   font-size: var(--large-text);
 }
 
-.main {
-  grid-column: 2/2;
+.library-app__book-table {
   background-color: #fff;
-  margin-left: 40px;
+  margin-left: 20px;
+  width: 70%;
 }
 
-h1 {
+.book-table__title {
   color: #707df5;
   margin-bottom: 10px;
 }
 
-.tally {
+.book-table__tally {
   color: #93949f;
 }
 
-table {
+.book-table__table {
   width: 100%;
   margin-top: 20px;
 }
 
-thead {
+.table__header {
   font-weight: 600;
 }
 
@@ -164,7 +162,7 @@ td {
   cursor: pointer;
 }
 
-.remove-all {
+.book-table__remove-all {
   text-align: center;
   margin: 100px auto;
   color: #f5707d;
@@ -173,4 +171,11 @@ td {
   line-height: 50px;
   border-radius: 3px;
   cursor: pointer;
+}
+
+.book-table__remove-all:focus,
+.book-table__remove-all:hover {
+  border: none;
+  background-color: var(--red);
+  color: #fff;
 }

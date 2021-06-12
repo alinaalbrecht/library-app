@@ -1,6 +1,6 @@
 let bookList = document.querySelector("tbody");
 let submitBookButton = document.querySelector(".book-form__submit");
-let removeAllBooks = document.querySelector(".remove-all");
+let removeAllBooks = document.querySelector(".book-table__remove-all");
 removeAllBooks.addEventListener("click", clearAll);
 
 let read = "&#10003;";
@@ -87,7 +87,7 @@ function deleteBook(e) {
 }
 
 function updateTally() {
-  let tally = document.querySelector(".tally");
+  let tally = document.querySelector(".book-table__tally");
   let totalRead = 0;
   let total = library.length;
   for (let i = 0; i < library.length; i++) {
