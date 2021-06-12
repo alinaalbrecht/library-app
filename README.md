@@ -1,4 +1,4 @@
-# library App
+# Library App
 
 Add books to your library, mark them as read or delete them if you wish. The list of books is saved to your browser's local storage.
 
